@@ -97,67 +97,67 @@ function App() {
   };
 
   return <main>
-  <header className="wedding-header">
-  <button
-    className="mobile-menu"
-    onClick={() => setMenuOpen(!menuOpen)}
-    aria-label="Toggle navigation"
-  >
-    {menuOpen ? <X size={23} /> : <Menu size={23} />}
-  </button>
+    <header className="wedding-header">
+      <button
+        className="mobile-menu"
+        onClick={() => setMenuOpen(!menuOpen)}
+        aria-label="Toggle navigation"
+      >
+        {menuOpen ? <X size={23} /> : <Menu size={23} />}
+      </button>
 
-  <nav className={`wedding-nav ${menuOpen ? 'nav-open' : ''}`}>
-    {/* Left navigation */}
-    <div className="nav-group">
-      {navItems.slice(0, 2).map(([label, target]) => (
+      <nav className={`wedding-nav ${menuOpen ? 'nav-open' : ''}`}>
+        {/* Left navigation */}
+        <div className="nav-group">
+          {navItems.slice(0, 2).map(([label, target]) => (
+            <button
+              key={label}
+              onClick={() => scrollTo(target)}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+
+        {/* Center monogram */}
         <button
-          key={label}
-          onClick={() => scrollTo(target)}
+          className="wedding-monogram"
+          onClick={() =>
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+          }
+          aria-label="Back to top"
         >
-          {label}
+          <Flower2 className="monogram-flower" size={25} />
+
+          <span className="monogram-names">
+            A <i>&</i> A
+          </span>
+
+          <span className="monogram-caption">
+            TOGETHER FOREVER
+          </span>
         </button>
-      ))}
-    </div>
 
-    {/* Center monogram */}
-    <button
-      className="wedding-monogram"
-      onClick={() =>
-        window.scrollTo({ top: 0, behavior: 'smooth' })
-      }
-      aria-label="Back to top"
-    >
-      <Flower2 className="monogram-flower" size={25} />
-
-      <span className="monogram-names">
-        A <i>&</i> A
-      </span>
-
-      <span className="monogram-caption">
-        TOGETHER FOREVER
-      </span>
-    </button>
-
-    {/* Right navigation */}
-    <div className="nav-group">
-      {navItems.slice(2).map(([label, target]) => (
-        <button
-          key={label}
-          onClick={() => {
-            if (target === '#rsvp') {
-              setShowRSVP(true);
-              setMenuOpen(false);
-            } else {
-              scrollTo(target);
-            }
-          }}
-        >
-          {label}
-        </button>
-      ))}
-    </div>
-  </nav>
-</header>
+        {/* Right navigation */}
+        <div className="nav-group">
+          {navItems.slice(2).map(([label, target]) => (
+            <button
+              key={label}
+              onClick={() => {
+                if (target === '#rsvp') {
+                  setShowRSVP(true);
+                  setMenuOpen(false);
+                } else {
+                  scrollTo(target);
+                }
+              }}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      </nav>
+    </header>
 
     <section className="hero" id="story">
       <img className="hero-invitation" src={heroInvitation} alt="Elegant ivory and gold wedding invitation artwork" />
@@ -204,8 +204,7 @@ function App() {
       </div>
     </section>
 
-    <section style={{ border: '2px solid black', border: 'none' }} className="event-details" id="schedule">
-
+    <section style={{ border: 'none' }} className="event-details" id="schedule">
       <div className="event-layout">
         <img className="event-flower" src={eventFlower} alt="Ivory and gold floral arrangement" />
         <div className="event-copy">
